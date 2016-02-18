@@ -16,6 +16,26 @@
 
 package com.google.android.apps.mytracks.fragments;
 
+import android.content.Context;
+import android.content.Intent;
+import android.location.Location;
+import android.os.Bundle;
+import android.os.Looper;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.view.ViewTreeObserver.OnGlobalLayoutListener;
+import android.widget.FrameLayout;
+import android.widget.ImageButton;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import com.google.android.apps.mytracks.MapOverlay;
 import com.google.android.apps.mytracks.MarkerDetailActivity;
 import com.google.android.apps.mytracks.TrackDetailActivity;
@@ -26,7 +46,6 @@ import com.google.android.apps.mytracks.content.TrackDataHub;
 import com.google.android.apps.mytracks.content.TrackDataListener;
 import com.google.android.apps.mytracks.content.TrackDataType;
 import com.google.android.apps.mytracks.content.Waypoint;
-import com.google.android.apps.mytracks.ign.Ign;
 import com.google.android.apps.mytracks.ign.IgnTileProvider;
 import com.google.android.apps.mytracks.services.MyTracksLocationManager;
 import com.google.android.apps.mytracks.stats.TripStatistics;
@@ -50,38 +69,10 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.Polyline;
-import com.google.android.gms.maps.model.Tile;
 import com.google.android.gms.maps.model.TileOverlay;
 import com.google.android.gms.maps.model.TileOverlayOptions;
-import com.google.android.gms.maps.model.TileProvider;
 import com.google.android.maps.mytracks.R;
 
-import android.content.Context;
-import android.content.Intent;
-import android.location.Location;
-import android.os.Bundle;
-import android.os.Looper;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
-import android.view.ViewTreeObserver.OnGlobalLayoutListener;
-import android.widget.FrameLayout;
-import android.widget.ImageButton;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import java.io.BufferedInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.EnumSet;
 
@@ -227,7 +218,7 @@ public class MyTracksMapFragment extends SupportMapFragment implements TrackData
       keepCurrentLocationVisible = savedInstanceState.getBoolean(
           KEEP_CURRENT_LOCATION_VISIBLE_KEY, false);
       if (keepCurrentLocationVisible) {
-        Location location = (Location) savedInstanceState.getParcelable(CURRENT_LOCATION_KEY);
+        Location location = savedInstanceState.getParcelable(CURRENT_LOCATION_KEY);
         if (location != null) {
           setCurrentLocation(location);
         }
@@ -500,15 +491,16 @@ public class MyTracksMapFragment extends SupportMapFragment implements TrackData
       getActivity().runOnUiThread(new Runnable() {
         public void run() {
           if (isResumed() && googleMap != null) {
+            if (tileOverlay != null) {
+              tileOverlay.remove();
+              tileOverlay = null;
+            }
             if (mapType <= GoogleMap.MAP_TYPE_HYBRID) {
               googleMap.setMapType(mapType);
             } else {
               googleMap.setMapType(GoogleMap.MAP_TYPE_NONE);
-              if (tileOverlay != null) {
-                tileOverlay.remove();
-              }
               tileOverlay = googleMap.addTileOverlay(
-                      new TileOverlayOptions().tileProvider(new IgnTileProvider(getActivity(), mapType)).zIndex(-1));
+                      new TileOverlayOptions().tileProvider(new IgnTileProvider(getActivity(), mapType)));
             }
           }
         }
@@ -583,7 +575,7 @@ public class MyTracksMapFragment extends SupportMapFragment implements TrackData
               : CameraUpdateFactory.newLatLng(latLng);
           googleMap.animateCamera(cameraUpdate);
         }
-      };
+      }
     });
   }
 

@@ -16,6 +16,7 @@
 
 package com.google.android.apps.mytracks.fragments;
 
+import com.google.android.apps.mytracks.ign.Ign;
 import com.google.android.apps.mytracks.util.PreferencesUtils;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.maps.mytracks.R;
@@ -35,9 +36,9 @@ public class MapLayerDialogFragment extends AbstractMyTracksDialogFragment {
   public static final String MAP_LAYER_DIALOG_TAG = "mapLayer";
 
   private static final int[] LAYERS = { R.string.menu_map, R.string.menu_satellite,
-      R.string.menu_satellite_with_streets, R.string.menu_terrain };
+      R.string.menu_satellite_with_streets, R.string.menu_terrain, R.string.menu_ign_map, R.string.menu_ign_satellite };
   private static final int[] MAP_TYPES = { GoogleMap.MAP_TYPE_NORMAL, GoogleMap.MAP_TYPE_SATELLITE,
-      GoogleMap.MAP_TYPE_HYBRID, GoogleMap.MAP_TYPE_TERRAIN };
+      GoogleMap.MAP_TYPE_HYBRID, GoogleMap.MAP_TYPE_TERRAIN, Ign.IGN_TYPE_MAP, Ign.MAP_TYPE_SATELLITE };
 
   @Override
   protected Dialog createDialog() {

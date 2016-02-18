@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="ign_api_host">http://wxs.ign.fr</string>
+  <string name="ign_api_path">geoportail/wmts</string>
+  <string name="ign_layer_map">LAYER=GEOGRAPHICALGRIDSYSTEMS.MAPS</string>
+  <string name="ign_layer_satellite">LAYER=ORTHOIMAGERY.ORTHOPHOTOS</string>
+  <string name="ign_api_args"><![CDATA[&EXCEPTIONS=text/xml&FORMAT=image/jpeg&SERVICE=WMTS&VERSION=1.0.0&REQUEST=GetTile&STYLE=normal&TILEMATRIXSET=PM]]></string>
+  <string name="ign_api_coordinates"><![CDATA[&TILEMATRIX={z}&TILECOL={x}&TILEROW={y}]]></string>
+</resources>

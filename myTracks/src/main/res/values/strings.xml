@@ -1146,6 +1146,20 @@ limitations under the License.
       Character limit: ~20 (1 line)">
     Help forum
   </string>
+  <string name="menu_ign_map"
+    translation_description="In the menu, under the map layer option, the submenu to display normal
+      map from IGN provider.
+
+      Character limit: ~20 (1 line)">
+    IGN Map
+  </string>
+  <string name="menu_ign_satellite"
+    translation_description="In the menu, under the map layer option, the submenu to display
+      satellite from IGN provider.
+
+      Character limit: ~20 (1 line)">
+    IGN Satellite
+  </string>
   <string name="menu_help_play_store"
     translation_description="In the menu, to go to the My Tracks Google Play Store page.
 

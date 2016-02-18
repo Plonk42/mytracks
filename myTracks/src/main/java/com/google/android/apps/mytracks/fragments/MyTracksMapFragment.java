@@ -26,6 +26,8 @@ import com.google.android.apps.mytracks.content.TrackDataHub;
 import com.google.android.apps.mytracks.content.TrackDataListener;
 import com.google.android.apps.mytracks.content.TrackDataType;
 import com.google.android.apps.mytracks.content.Waypoint;
+import com.google.android.apps.mytracks.ign.Ign;
+import com.google.android.apps.mytracks.ign.IgnTileProvider;
 import com.google.android.apps.mytracks.services.MyTracksLocationManager;
 import com.google.android.apps.mytracks.stats.TripStatistics;
 import com.google.android.apps.mytracks.util.ApiAdapterFactory;
@@ -48,6 +50,10 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.Tile;
+import com.google.android.gms.maps.model.TileOverlay;
+import com.google.android.gms.maps.model.TileOverlayOptions;
+import com.google.android.gms.maps.model.TileProvider;
 import com.google.android.maps.mytracks.R;
 
 import android.content.Context;
@@ -55,6 +61,7 @@ import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -70,6 +77,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.EnumSet;
 
@@ -130,6 +142,7 @@ public class MyTracksMapFragment extends SupportMapFragment implements TrackData
 
   // UI elements
   private GoogleMap googleMap;
+  private TileOverlay tileOverlay;
   private MapOverlay mapOverlay;
   private View mapView;
   private ImageButton myLocationImageButton;
@@ -406,7 +419,7 @@ public class MyTracksMapFragment extends SupportMapFragment implements TrackData
         public void run() {
           if (isResumed() && googleMap != null && currentTrack != null) {
             boolean hasStartMarker = mapOverlay.update(
-                googleMap, paths, currentTrack.getTripStatistics(), reloadPaths);
+                    googleMap, paths, currentTrack.getTripStatistics(), reloadPaths);
 
             /*
              * If has the start marker, then don't need to reload the paths each
@@ -487,7 +500,16 @@ public class MyTracksMapFragment extends SupportMapFragment implements TrackData
       getActivity().runOnUiThread(new Runnable() {
         public void run() {
           if (isResumed() && googleMap != null) {
-            googleMap.setMapType(mapType);
+            if (mapType <= GoogleMap.MAP_TYPE_HYBRID) {
+              googleMap.setMapType(mapType);
+            } else {
+              googleMap.setMapType(GoogleMap.MAP_TYPE_NONE);
+              if (tileOverlay != null) {
+                tileOverlay.remove();
+              }
+              tileOverlay = googleMap.addTileOverlay(
+                      new TileOverlayOptions().tileProvider(new IgnTileProvider(getActivity(), mapType)).zIndex(-1));
+            }
           }
         }
       });

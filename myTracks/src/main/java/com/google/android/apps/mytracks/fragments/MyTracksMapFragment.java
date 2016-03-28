@@ -500,7 +500,9 @@ public class MyTracksMapFragment extends SupportMapFragment implements TrackData
             } else {
               googleMap.setMapType(GoogleMap.MAP_TYPE_NONE);
               tileOverlay = googleMap.addTileOverlay(
-                      new TileOverlayOptions().tileProvider(new IgnTileProvider(getActivity(), mapType)));
+                      new TileOverlayOptions()
+                              .tileProvider(new IgnTileProvider(getActivity(), mapType))
+                              .zIndex(-1));
             }
           }
         }

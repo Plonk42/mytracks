@@ -17,7 +17,7 @@ import java.net.URL;
 
 public class IgnTileProvider implements TileProvider {
 
-  private static final String TAG = "IgnTileProvider";
+  private static final String TAG = IgnTileProvider.class.getSimpleName();
 
   private static final int TILE_SIZE = 256;
 

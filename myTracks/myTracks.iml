@@ -66,12 +66,15 @@
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/rs" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/assets" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/blame" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/bundles" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/classes" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/dependency-cache" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/instant-run-support" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/jniLibs" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/manifests" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/pre-dexed" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/proguard-rules" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/res" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/rs" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/symbols" />
@@ -84,11 +87,11 @@
     <orderEntry type="library" exported="" name="google-oauth-client-1.12.0-beta" level="project" />
     <orderEntry type="library" exported="" name="google-api-services-fusiontables-v1-rev16-1.12.0-beta" level="project" />
     <orderEntry type="library" exported="" name="android-support-v4" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="robotium-solo-5.0.1" level="project" />
     <orderEntry type="library" exported="" name="google-api-client-android-1.12.0-beta" level="project" />
     <orderEntry type="library" exported="" name="gdata-core-1.0" level="project" />
     <orderEntry type="library" exported="" name="google-http-client-gson-1.12.0-beta" level="project" />
     <orderEntry type="library" exported="" name="google-play-services" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="robotium-solo-3.3" level="project" />
     <orderEntry type="library" exported="" name="libGoogleAnalytics" level="project" />
     <orderEntry type="library" exported="" name="gdata-spreadsheet-3.0" level="project" />
     <orderEntry type="library" exported="" name="google-http-client-jackson-1.12.0-beta" level="project" />
@@ -105,6 +108,7 @@
     <orderEntry type="library" exported="" scope="TEST" name="AndroidMockGenerator" level="project" />
     <orderEntry type="library" exported="" name="google-http-client-jackson2-1.12.0-beta" level="project" />
     <orderEntry type="library" exported="" name="antlib" level="project" />
+    <orderEntry type="library" exported="" name="protobuf-java-2.5.0" level="project" />
     <orderEntry type="library" exported="" name="google-http-client-android-1.12.0-beta" level="project" />
     <orderEntry type="library" exported="" name="guava-jdk5-13.0" level="project" />
     <orderEntry type="library" exported="" name="gdata-spreadsheet-meta-3.0" level="project" />

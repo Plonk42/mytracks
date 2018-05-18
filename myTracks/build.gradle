@@ -1,14 +1,6 @@
 apply plugin: 'com.android.application'
 
 android {
-    signingConfigs {
-        config {
-            keyAlias 'key0'
-            keyPassword ''
-            storeFile file('/home/sarunas/cert/android.jks')
-            storePassword ''
-        }
-    }
     compileSdkVersion 17
     buildToolsVersion '27.0.3'
     defaultConfig {

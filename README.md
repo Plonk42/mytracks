@@ -1,6 +1,12 @@
 # MyTracks
 *A respawn of Google MyTracks*
 
+**This fork has been updated to compile in 
+
+Android Studio 3.1.2
+JRE: 1.8.0_152-release-1024-b01 amd64
+Build Tools version 27.**
+
 **MyTracks** is a GPS tracking application, that was [open-sourced by Google](http://google-latlong.blogspot.fr/2010/05/code-for-my-tracks-is-now-yours.html) on May 28, 2010. It is licensed under the terms of [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0). 
 
 On 2014, Google [announced](https://code.google.com/archive/p/mytracks/) updates will no longer be published as open-source, and source will be removed from Google Code on January 01, 2015.

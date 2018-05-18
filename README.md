@@ -2,7 +2,6 @@
 *A respawn of Google MyTracks*
 
 **This fork has been updated to compile in 
-
 Android Studio 3.1.2
 JRE: 1.8.0_152-release-1024-b01 amd64
 Build Tools version 27.**
